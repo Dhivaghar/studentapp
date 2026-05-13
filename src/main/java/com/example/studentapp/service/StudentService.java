@@ -10,6 +10,10 @@ public interface StudentService {
     List<Student> getAllStudents();
 
     void deleteStudent(int id);
-    
+
     Student getStudentById(int id);
+
+    Student updateStudent(int id, Student student);
+
+    List<Student> searchByName(String name);
 }

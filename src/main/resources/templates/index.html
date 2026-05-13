@@ -2,32 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Students</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h2>Student List</h2>
+<div class="container">
 
-<a href="/add">Add Student</a>
+    <h2>Student List</h2>
 
-<table border="1">
-<tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Action</th>
-</tr>
+    <div class="card">
 
-<tr th:each="s : ${students}">
-    <td th:text="${s.id}"></td>
-    <td th:text="${s.name}"></td>
-    <td th:text="${s.email}"></td>
-    <td>
-    	<a th:href="@{/students/edit/{id}(id=${s.id})}">Edit</a>
-        <a th:href="@{/students/delete/{id}(id=${s.id})}">Delete</a>
-    </td>
-</tr>
+        <div class="top-bar">
+            <span style="color:#888; font-size:14px;">
+                Total: <strong th:text="${#lists.size(students)}" style="color:#fff;">0</strong> students
+            </span>
+            <a href="/students/add" class="btn btn-primary">+ Add Student</a>
+        </div>
 
-</table>
+        <table th:if="${!students.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th style="text-align:center;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="s : ${students}">
+                    <td th:text="${s.id}"></td>
+                    <td th:text="${s.name}"></td>
+                    <td th:text="${s.email}"></td>
+                    <td>
+                        <div class="actions">
+                            <a th:href="@{/students/edit/{id}(id=${s.id})}" class="btn btn-edit">Edit</a>
+                            <a th:href="@{/students/delete/{id}(id=${s.id})}" class="btn btn-delete">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:if="${students.isEmpty()}" class="empty-msg">
+            No students found. Click "Add Student" to get started.
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
