@@ -3,14 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Dhivaghar/studentapp'
-            }
-        }
-
         stage('Build App') {
             steps {
+                sh 'chmod +x mvnw'
                 sh './mvnw clean package'
             }
         }
