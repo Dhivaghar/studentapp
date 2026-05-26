@@ -6,7 +6,7 @@ pipeline {
         stage('Build App') {
             steps {
                 sh 'chmod +x mvnw'
-                sh './mvnw clean package -DskipTests'
+                sh './mvnw clean package -Dmaven.test.skip=true'
             }
         }
 
