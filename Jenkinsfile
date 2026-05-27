@@ -18,7 +18,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 8081:8080 spring-app'
+                sh 'docker run -d -p 8090:8080 spring-app'
             }
         }
     }
